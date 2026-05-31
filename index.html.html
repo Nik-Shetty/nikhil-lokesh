@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikhil Lokesh · Executive Programme Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@200;300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #080c1a;
+  --navy2: #0d1428;
+  --navy3: #12203a;
+  --amber: #e8a040;
+  --amber2: #f0b850;
+  --amber-dim: rgba(232,160,64,0.15);
+  --amber-glow: rgba(232,160,64,0.08);
+  --white: #f5f0e8;
+  --white2: rgba(245,240,232,0.7);
+  --white3: rgba(245,240,232,0.35);
+  --white4: rgba(245,240,232,0.12);
+  --mono: 'Share Tech Mono', monospace;
+  --serif: 'Cormorant Garamond', serif;
+  --sans: 'Barlow', sans-serif;
+  --cond: 'Barlow Condensed', sans-serif;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--navy); color: var(--white); font-family: var(--sans); overflow-x: hidden; cursor: none; }
+
+#cursor { position:fixed;top:0;left:0;z-index:9999;width:20px;height:20px;border:1px solid var(--amber);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:screen; }
+#cursor.hover { width:36px;height:36px;background:var(--amber-dim); }
+#cursor-dot { position:fixed;top:0;left:0;z-index:9999;width:4px;height:4px;background:var(--amber);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%); }
+#starfield { position:fixed;inset:0;z-index:0;pointer-events:none; }
+#progress-bar { position:fixed;top:0;left:0;z-index:200;height:2px;background:var(--amber);width:0%;transition:width .1s; }
+
+nav { position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;border-bottom:0.5px solid rgba(232,160,64,0.1);backdrop-filter:blur(12px);background:rgba(8,12,26,0.7); }
+.nav-logo { font-family:var(--cond);font-weight:200;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--amber); }
+.nav-links { display:flex;gap:32px;list-style:none; }
+.nav-links a { font-family:var(--cond);font-size:11px;font-weight:400;letter-spacing:2.5px;text-transform:uppercase;color:var(--white3);text-decoration:none;transition:color .3s; }
+.nav-links a:hover { color:var(--amber); }
+.nav-status { display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;color:var(--white3); }
+.status-dot { width:6px;height:6px;border-radius:50%;background:#4caf50;animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;}50%{opacity:0.3;} }
+
+/* ── HERO ── */
+#hero { position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 48px;overflow:hidden; }
+.hero-grid { display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;width:100%; }
+.hero-eyebrow { font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:2px;margin-bottom:20px;opacity:0;animation:fadeUp .8s .2s forwards; }
+.hero-name { font-family:var(--serif);font-weight:300;font-size:clamp(48px,6vw,80px);line-height:1;color:var(--white);margin-bottom:12px;opacity:0;animation:fadeUp .8s .4s forwards; }
+.hero-name strong { font-weight:600;color:var(--amber); }
+.hero-title { font-family:var(--cond);font-weight:300;font-size:clamp(14px,2vw,20px);letter-spacing:3px;text-transform:uppercase;color:var(--white2);margin-bottom:32px;opacity:0;animation:fadeUp .8s .6s forwards; }
+.hero-tagline { font-family:var(--serif);font-style:italic;font-size:clamp(16px,2vw,22px);color:var(--white2);line-height:1.6;margin-bottom:40px;border-left:2px solid var(--amber);padding-left:20px;opacity:0;animation:fadeUp .8s .8s forwards; }
+.hero-stats { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;opacity:0;animation:fadeUp .8s 1s forwards; }
+.stat-box { border:0.5px solid rgba(232,160,64,0.25);padding:16px 20px;border-radius:2px;background:var(--amber-glow); }
+.stat-num { font-family:var(--cond);font-weight:700;font-size:28px;color:var(--amber);line-height:1;margin-bottom:4px; }
+.stat-label { font-family:var(--cond);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white3); }
+.hero-cta { display:flex;gap:16px;opacity:0;animation:fadeUp .8s 1.2s forwards; }
+.btn { font-family:var(--cond);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:12px 28px;border-radius:2px;border:1px solid var(--amber);color:var(--amber);background:transparent;cursor:none;transition:background .3s,color .3s; }
+.btn:hover { background:var(--amber);color:var(--navy); }
+.btn.filled { background:var(--amber);color:var(--navy); }
+.btn.filled:hover { background:transparent;color:var(--amber); }
+.hero-right { display:flex;flex-direction:column;align-items:center;gap:24px;opacity:0;animation:fadeIn 1.2s 1s forwards; }
+.radar-wrap { position:relative;width:280px;height:280px; }
+.radar-svg { width:100%;height:100%; }
+.scan-line { transform-origin:140px 140px;animation:scan 4s linear infinite; }
+.blip { animation:blink 2s infinite; }
+.blip2 { animation:blink 2.8s .5s infinite; }
+.blip3 { animation:blink 1.8s 1s infinite; }
+.alt-tape { font-family:var(--mono);font-size:9px;color:var(--white3);display:flex;flex-direction:column;gap:4px;align-items:flex-start; }
+.alt-line { display:flex;align-items:center;gap:8px; }
+.alt-tick { width:12px;height:0.5px;background:var(--amber);flex-shrink:0; }
+.alt-tick.long { width:20px; }
+
+section { position:relative;z-index:1;padding:100px 48px; }
+.section-label { font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px; }
+.section-title { font-family:var(--serif);font-weight:300;font-size:clamp(32px,4vw,52px);color:var(--white);margin-bottom:60px;line-height:1.1; }
+.section-title em { font-style:italic;color:var(--amber); }
+.max-w { max-width:1200px;margin:0 auto; }
+.divider { height:0.5px;background:linear-gradient(90deg,transparent,rgba(232,160,64,0.3),transparent);margin:0 48px;position:relative;z-index:1; }
+
+/* ── STORY SECTION ── */
+#story { background: linear-gradient(180deg, var(--navy) 0%, var(--navy2) 100%); }
+.story-intro { font-family:var(--serif);font-weight:300;font-size:clamp(20px,2.5vw,28px);color:var(--white2);line-height:1.7;max-width:780px;margin:0 auto 80px;text-align:center;font-style:italic; }
+.story-intro strong { color:var(--amber);font-style:normal;font-weight:600; }
+
+.journey-path { position:relative;max-width:900px;margin:0 auto; }
+.journey-path::before { content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--amber),rgba(232,160,64,0.1));transform:translateX(-50%); }
+
+.journey-step { display:flex;align-items:flex-start;gap:40px;margin-bottom:80px;position:relative;opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s; }
+.journey-step.visible { opacity:1;transform:none; }
+.journey-step:nth-child(even) { flex-direction:row-reverse; }
+
+.journey-step-year { font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:2px;margin-bottom:8px; }
+.journey-step-content { flex:1;border:0.5px solid rgba(232,160,64,0.15);padding:28px 32px;border-radius:2px;background:var(--amber-glow);max-width:380px; }
+.journey-step-content h3 { font-family:var(--serif);font-weight:600;font-size:20px;color:var(--white);margin-bottom:8px; }
+.journey-step-content p { font-size:13px;color:var(--white2);line-height:1.7; }
+.journey-step-icon { width:48px;height:48px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1px solid var(--amber);border-radius:50%;background:var(--navy);position:absolute;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:14px;color:var(--amber); }
+
+/* ── PROGRAMME CARDS (clickable) ── */
+#programmes { background: var(--navy2); }
+.programmes-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:20px; }
+
+.prog-card {
+  border:0.5px solid rgba(232,160,64,0.2);
+  border-radius:2px;
+  background:var(--amber-glow);
+  cursor:none;
+  overflow:hidden;
+  transition:border-color .3s,transform .3s,box-shadow .3s;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .5s,transform .5s,border-color .3s;
+  position:relative;
+}
+.prog-card.visible { opacity:1;transform:none; }
+.prog-card:hover { border-color:rgba(232,160,64,0.5);transform:translateY(-4px); }
+
+.prog-card-header {
+  padding:28px 28px 20px;
+  position:relative;
+  border-bottom:0.5px solid rgba(232,160,64,0.1);
+}
+.prog-card-oemlogo {
+  font-family:var(--cond);
+  font-weight:700;
+  font-size:22px;
+  letter-spacing:3px;
+  color:var(--amber);
+  margin-bottom:8px;
+  text-transform:uppercase;
+}
+.prog-card-subtitle {
+  font-family:var(--cond);
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--white3);
+  margin-bottom:12px;
+}
+.prog-card-platform {
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:16px;
+  color:var(--white2);
+  line-height:1.4;
+}
+.prog-card-body { padding:20px 28px 24px; }
+.prog-card-teaser { font-size:12px;color:var(--white3);line-height:1.7;margin-bottom:16px; }
+.prog-card-kpis { display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px; }
+.prog-kpi { font-family:var(--cond);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);border:0.5px solid rgba(232,160,64,0.3);padding:4px 10px;border-radius:2px; }
+.prog-card-cta {
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--cond);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--amber);cursor:none;
+  padding-top:8px;
+  border-top:0.5px solid rgba(232,160,64,0.1);
+}
+.prog-card-cta::after { content:'→';transition:transform .3s; }
+.prog-card:hover .prog-card-cta::after { transform:translateX(4px); }
+
+.prog-accent-bar { height:3px;width:0;background:var(--amber);transition:width .4s;position:absolute;bottom:0;left:0; }
+.prog-card:hover .prog-accent-bar { width:100%; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position:fixed;inset:0;z-index:500;
+  background:rgba(8,12,26,0.92);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s;
+  backdrop-filter:blur(12px);
+  padding:40px;
+}
+.modal-overlay.open { opacity:1;pointer-events:all; }
+.modal-box {
+  background:var(--navy2);
+  border:0.5px solid rgba(232,160,64,0.3);
+  border-radius:4px;
+  max-width:760px;
+  width:100%;
+  max-height:85vh;
+  overflow-y:auto;
+  transform:translateY(20px);
+  transition:transform .3s;
+  position:relative;
+}
+.modal-overlay.open .modal-box { transform:none; }
+
+.modal-header {
+  padding:36px 40px 24px;
+  border-bottom:0.5px solid rgba(232,160,64,0.15);
+  position:sticky;top:0;background:var(--navy2);z-index:1;
+  display:flex;justify-content:space-between;align-items:flex-start;
+}
+.modal-oemlogo { font-family:var(--cond);font-weight:700;font-size:32px;letter-spacing:4px;color:var(--amber);text-transform:uppercase; }
+.modal-platform { font-family:var(--serif);font-style:italic;font-size:18px;color:var(--white2);margin-top:4px; }
+.modal-close { font-family:var(--mono);font-size:14px;color:var(--white3);cursor:none;background:none;border:1px solid rgba(245,240,232,0.15);padding:8px 12px;border-radius:2px;transition:color .2s,border-color .2s;flex-shrink:0; }
+.modal-close:hover { color:var(--amber);border-color:var(--amber); }
+
+.modal-body { padding:32px 40px 40px; }
+
+.modal-section { margin-bottom:32px; }
+.modal-section-label { font-family:var(--mono);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--amber);margin-bottom:16px;padding-bottom:8px;border-bottom:0.5px solid rgba(232,160,64,0.15); }
+
+.modal-narrative { font-family:var(--serif);font-size:18px;font-style:italic;color:var(--white2);line-height:1.7;margin-bottom:20px;border-left:2px solid var(--amber);padding-left:20px; }
+
+.modal-bullets { list-style:none;display:flex;flex-direction:column;gap:10px; }
+.modal-bullets li { display:flex;gap:14px;align-items:flex-start;font-size:13px;color:var(--white2);line-height:1.7; }
+.modal-bullets li::before { content:'';flex-shrink:0;width:5px;height:5px;border-radius:50%;background:var(--amber);margin-top:7px; }
+.modal-bullets li strong { color:var(--white); }
+
+.modal-expertise-grid { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
+.modal-expertise-item { border:0.5px solid rgba(232,160,64,0.15);padding:12px 16px;border-radius:2px;background:rgba(232,160,64,0.04); }
+.modal-expertise-item-title { font-family:var(--cond);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-bottom:4px; }
+.modal-expertise-item-desc { font-size:12px;color:var(--white3);line-height:1.6; }
+
+.modal-kpi-row { display:flex;gap:12px;flex-wrap:wrap; }
+.modal-kpi-card { border:0.5px solid rgba(232,160,64,0.25);padding:16px 20px;border-radius:2px;background:var(--amber-glow);flex:1;min-width:120px;text-align:center; }
+.modal-kpi-num { font-family:var(--cond);font-weight:700;font-size:26px;color:var(--amber);line-height:1;margin-bottom:4px; }
+.modal-kpi-label { font-family:var(--cond);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white3); }
+
+/* scrollbar */
+.modal-box::-webkit-scrollbar { width:4px; }
+.modal-box::-webkit-scrollbar-track { background:transparent; }
+.modal-box::-webkit-scrollbar-thumb { background:rgba(232,160,64,0.3);border-radius:2px; }
+
+/* ── TIMELINE ── */
+.timeline { position:relative; }
+.timeline::before { content:'';position:absolute;left:0;top:0;bottom:0;width:0.5px;background:linear-gradient(180deg,var(--amber),rgba(232,160,64,0.1)); }
+.tl-item { display:grid;grid-template-columns:200px 1fr;gap:48px;padding:0 0 64px 40px;position:relative;opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s; }
+.tl-item.visible { opacity:1;transform:none; }
+.tl-dot { position:absolute;left:-6px;top:4px;width:12px;height:12px;border:2px solid var(--amber);border-radius:50%;background:var(--navy); }
+.tl-dot.active { background:var(--amber); }
+.tl-meta { text-align:right; }
+.tl-date { font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:1px;margin-bottom:8px; }
+.tl-company { font-family:var(--cond);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white3);margin-bottom:4px; }
+.tl-location { font-family:var(--cond);font-size:10px;color:rgba(245,240,232,0.2);letter-spacing:1px; }
+.tl-role { font-family:var(--serif);font-weight:600;font-size:22px;color:var(--white);margin-bottom:12px;line-height:1.2; }
+.tl-intro { font-size:14px;color:var(--white2);line-height:1.7;margin-bottom:16px;font-style:italic;border-left:2px solid var(--amber);padding-left:12px; }
+.tl-bullets { list-style:none;display:flex;flex-direction:column;gap:8px; }
+.tl-bullets li { display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--white2);line-height:1.65; }
+.tl-bullets li::before { content:'';flex-shrink:0;width:4px;height:4px;border-radius:50%;background:var(--amber);margin-top:7px; }
+.tl-bullets li strong { color:var(--white);font-weight:600; }
+.tl-tags { display:flex;flex-wrap:wrap;gap:6px;margin-top:16px; }
+.tag { font-family:var(--cond);font-size:9px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);border:0.5px solid rgba(232,160,64,0.3);padding:4px 10px;border-radius:2px; }
+
+/* ── METRICS ── */
+#metrics { background:var(--navy2); }
+.metrics-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(232,160,64,0.1);border:0.5px solid rgba(232,160,64,0.15);border-radius:4px;overflow:hidden; }
+.metric-card { background:var(--navy2);padding:40px 32px;text-align:center;position:relative;overflow:hidden; }
+.metric-card::after { content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:40px;height:2px;background:var(--amber);opacity:0;transition:opacity .3s,width .3s; }
+.metric-card:hover::after { opacity:1;width:80px; }
+.metric-num { font-family:var(--cond);font-weight:700;font-size:52px;color:var(--amber);line-height:1;margin-bottom:8px; }
+.metric-unit { font-family:var(--cond);font-size:20px;color:rgba(232,160,64,0.6); }
+.metric-label { font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--white3);margin-bottom:8px; }
+.metric-sub { font-size:12px;color:rgba(245,240,232,0.25);line-height:1.5; }
+
+/* ── SKILLS ── */
+.skills-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:24px; }
+.skill-cluster { border:0.5px solid rgba(232,160,64,0.15);padding:28px 24px;border-radius:2px;background:var(--amber-glow);opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s; }
+.skill-cluster.visible { opacity:1;transform:none; }
+.skill-cluster:hover { border-color:rgba(232,160,64,0.4); }
+.skill-cluster-icon { font-family:var(--mono);font-size:20px;color:var(--amber);margin-bottom:12px; }
+.skill-cluster-title { font-family:var(--cond);font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:16px; }
+.skill-list { display:flex;flex-wrap:wrap;gap:6px; }
+.skill-pill { font-family:var(--cond);font-size:10px;letter-spacing:1px;color:var(--white3);border:0.5px solid rgba(245,240,232,0.12);padding:4px 10px;border-radius:20px;transition:color .3s,border-color .3s; }
+.skill-cluster:hover .skill-pill { color:var(--white2);border-color:rgba(245,240,232,0.2); }
+
+.certs-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:16px; }
+.cert-card { display:flex;gap:16px;align-items:flex-start;border:0.5px solid rgba(232,160,64,0.15);padding:20px 24px;border-radius:2px;background:var(--amber-glow);opacity:0;transform:translateX(-16px);transition:opacity .5s,transform .5s; }
+.cert-card.visible { opacity:1;transform:none; }
+.cert-badge { width:36px;height:36px;flex-shrink:0;border:1px solid rgba(232,160,64,0.4);border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:var(--amber); }
+.cert-name { font-family:var(--cond);font-weight:600;font-size:13px;color:var(--white);margin-bottom:4px; }
+.cert-issuer { font-family:var(--cond);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--white3); }
+
+.edu-card { display:flex;gap:32px;align-items:flex-start;border:0.5px solid rgba(232,160,64,0.2);padding:36px 40px;border-radius:2px;background:var(--amber-glow); }
+.edu-year { font-family:var(--mono);font-size:12px;color:var(--amber);letter-spacing:1px;flex-shrink:0;padding-top:4px; }
+.edu-degree { font-family:var(--serif);font-size:24px;font-weight:600;color:var(--white);margin-bottom:6px; }
+.edu-school { font-family:var(--cond);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white2);margin-bottom:4px; }
+.edu-detail { font-family:var(--cond);font-size:11px;color:var(--white3);letter-spacing:1px; }
+
+#contact { background:var(--navy2); }
+.contact-grid { display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start; }
+.contact-headline { font-family:var(--serif);font-weight:300;font-size:40px;color:var(--white);line-height:1.3;margin-bottom:24px; }
+.contact-headline em { color:var(--amber);font-style:italic; }
+.contact-body { font-size:14px;color:var(--white2);line-height:1.8;margin-bottom:32px; }
+.contact-links { display:flex;flex-direction:column;gap:16px; }
+.contact-link { display:flex;align-items:center;gap:16px;text-decoration:none;padding:16px 20px;border:0.5px solid rgba(232,160,64,0.2);border-radius:2px;background:var(--amber-glow);transition:border-color .3s,background .3s; }
+.contact-link:hover { border-color:rgba(232,160,64,0.5);background:var(--amber-dim); }
+.contact-link-icon { font-family:var(--mono);font-size:14px;color:var(--amber);width:20px; }
+.contact-link-label { font-family:var(--cond);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--white3);margin-bottom:2px; }
+.contact-link-value { font-family:var(--cond);font-size:13px;color:var(--white2);letter-spacing:0.5px; }
+.oem-wall { display:flex;flex-wrap:wrap;gap:12px; }
+.oem-badge { font-family:var(--cond);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--white3);border:0.5px solid rgba(245,240,232,0.1);padding:10px 18px;border-radius:2px;transition:color .3s,border-color .3s; }
+.oem-badge:hover { color:var(--amber);border-color:rgba(232,160,64,0.4); }
+
+footer { position:relative;z-index:1;border-top:0.5px solid rgba(232,160,64,0.1);padding:32px 48px;display:flex;align-items:center;justify-content:space-between; }
+.footer-copy { font-family:var(--mono);font-size:10px;color:rgba(245,240,232,0.2);letter-spacing:1px; }
+.footer-sign { font-family:var(--serif);font-style:italic;font-size:14px;color:var(--amber);opacity:0.6; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;} }
+@keyframes fadeIn { from{opacity:0;}to{opacity:1;} }
+@keyframes scan { from{transform:rotate(0deg);}to{transform:rotate(360deg);} }
+@keyframes blink { 0%,100%{opacity:1;}50%{opacity:0;} }
+
+@media(max-width:900px){
+  .hero-grid,.contact-grid{grid-template-columns:1fr;gap:40px;}
+  .metrics-grid{grid-template-columns:repeat(2,1fr);}
+  .skills-grid{grid-template-columns:1fr 1fr;}
+  .certs-grid{grid-template-columns:1fr;}
+  .tl-item{grid-template-columns:1fr;gap:12px;}
+  .tl-meta{text-align:left;}
+  .hero-right{display:none;}
+  nav{padding:16px 24px;}
+  section{padding:80px 24px;}
+  .programmes-grid{grid-template-columns:1fr 1fr;}
+  .modal-body{padding:24px;}
+  .modal-header{padding:24px;}
+  .modal-expertise-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .programmes-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-dot"></div>
+<div id="progress-bar"></div>
+<canvas id="starfield"></canvas>
+
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal-box" id="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-oemlogo" id="modal-oemlogo"></div>
+        <div class="modal-platform" id="modal-platform"></div>
+      </div>
+      <button class="modal-close" id="modal-close">✕ Close</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-logo">NL · Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#story">Journey</a></li>
+    <li><a href="#programmes">Programmes</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#metrics">Metrics</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-status">
+    <div class="status-dot"></div>
+    Open to opportunities
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-eyebrow">// Executive Programme Manager · Aerospace & Defence</div>
+      <h1 class="hero-name">Nikhil<br><strong>Lokesh</strong></h1>
+      <div class="hero-title">Building Programmes That Fly</div>
+      <p class="hero-tagline">
+        From factory floor to C-suite strategy — driving $10M+ in career programme value across Boeing, GE Aviation, Collins Aerospace, Dassault & IAI.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <div class="stat-num">$10M<span style="font-size:18px;color:rgba(232,160,64,0.6)">+</span></div>
+          <div class="stat-label">Career Portfolio Value</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">130<span style="font-size:18px;color:rgba(232,160,64,0.6)">%</span></div>
+          <div class="stat-label">Revenue Growth</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">100<span style="font-size:18px;color:rgba(232,160,64,0.6)">%</span></div>
+          <div class="stat-label">On-Time Delivery</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">7</div>
+          <div class="stat-label">Global OEM Customers</div>
+        </div>
+      </div>
+      <div class="hero-cta">
+        <a href="#programmes" class="btn filled">View Programmes</a>
+        <a href="#contact" class="btn">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="radar-wrap">
+        <svg class="radar-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="radarGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#e8a040" stop-opacity="0.08"/>
+              <stop offset="100%" stop-color="#e8a040" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="scanGrad" cx="0%" cy="50%" r="100%">
+              <stop offset="0%" stop-color="#e8a040" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#e8a040" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="140" cy="140" r="130" fill="url(#radarGrad)" stroke="rgba(232,160,64,0.15)" stroke-width="0.5"/>
+          <circle cx="140" cy="140" r="32" fill="none" stroke="rgba(232,160,64,0.12)" stroke-width="0.5"/>
+          <circle cx="140" cy="140" r="64" fill="none" stroke="rgba(232,160,64,0.12)" stroke-width="0.5"/>
+          <circle cx="140" cy="140" r="96" fill="none" stroke="rgba(232,160,64,0.12)" stroke-width="0.5"/>
+          <circle cx="140" cy="140" r="128" fill="none" stroke="rgba(232,160,64,0.2)" stroke-width="0.5"/>
+          <line x1="140" y1="12" x2="140" y2="268" stroke="rgba(232,160,64,0.1)" stroke-width="0.5"/>
+          <line x1="12" y1="140" x2="268" y2="140" stroke="rgba(232,160,64,0.1)" stroke-width="0.5"/>
+          <line x1="45" y1="45" x2="235" y2="235" stroke="rgba(232,160,64,0.06)" stroke-width="0.5"/>
+          <line x1="235" y1="45" x2="45" y2="235" stroke="rgba(232,160,64,0.06)" stroke-width="0.5"/>
+          <g class="scan-line">
+            <path d="M140,140 L140,12" stroke="url(#scanGrad)" stroke-width="1.5" fill="none"/>
+            <path d="M140,140 L268,140" stroke="rgba(232,160,64,0.06)" stroke-width="40" fill="none" style="transform-origin:140px 140px;transform:rotate(-30deg)"/>
+          </g>
+          <g class="blip">
+            <circle cx="180" cy="90" r="4" fill="#e8a040" opacity="0.9"/>
+            <circle cx="180" cy="90" r="8" fill="none" stroke="#e8a040" stroke-width="0.5" opacity="0.4"/>
+            <text x="190" y="87" font-family="'Share Tech Mono',monospace" font-size="8" fill="rgba(232,160,64,0.7)">BOEING</text>
+          </g>
+          <g class="blip2">
+            <circle cx="100" cy="170" r="3" fill="#e8a040" opacity="0.8"/>
+            <text x="70" y="167" font-family="'Share Tech Mono',monospace" font-size="8" fill="rgba(232,160,64,0.6)">GE</text>
+          </g>
+          <g class="blip3">
+            <circle cx="200" cy="175" r="3" fill="#f0b850" opacity="0.7"/>
+            <text x="208" y="172" font-family="'Share Tech Mono',monospace" font-size="8" fill="rgba(232,160,64,0.6)">IAI</text>
+          </g>
+          <g class="blip">
+            <circle cx="90" cy="100" r="3" fill="#e8a040" opacity="0.6"/>
+            <text x="62" y="97" font-family="'Share Tech Mono',monospace" font-size="7" fill="rgba(232,160,64,0.5)">TASL</text>
+          </g>
+          <g class="blip2">
+            <circle cx="155" cy="210" r="3" fill="#e8a040" opacity="0.6"/>
+            <text x="160" y="207" font-family="'Share Tech Mono',monospace" font-size="7" fill="rgba(232,160,64,0.5)">DASSAULT</text>
+          </g>
+          <circle cx="140" cy="140" r="4" fill="#e8a040"/>
+          <circle cx="140" cy="140" r="8" fill="none" stroke="#e8a040" stroke-width="1" opacity="0.5"/>
+          <text x="140" y="8" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="8" fill="rgba(232,160,64,0.3)">N</text>
+          <text x="272" y="144" text-anchor="start" font-family="'Share Tech Mono',monospace" font-size="8" fill="rgba(232,160,64,0.3)">E</text>
+          <text x="140" y="276" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="8" fill="rgba(232,160,64,0.3)">S</text>
+          <text x="4" y="144" text-anchor="start" font-family="'Share Tech Mono',monospace" font-size="8" fill="rgba(232,160,64,0.3)">W</text>
+        </svg>
+      </div>
+      <div class="alt-tape">
+        <div class="alt-line"><div class="alt-tick long"></div><span>FL350 · CRUISE ALTITUDE</span></div>
+        <div class="alt-line"><div class="alt-tick"></div><span>FL300</span></div>
+        <div class="alt-line"><div class="alt-tick"></div><span>FL250</span></div>
+        <div class="alt-line"><div class="alt-tick long"></div><span>FL200 · PROGRAMME CEILING</span></div>
+        <div class="alt-line"><div class="alt-tick"></div><span>FL150</span></div>
+        <div class="alt-line"><div class="alt-tick"></div><span>FL100</span></div>
+        <div class="alt-line"><div class="alt-tick long"></div><span>GND · FACTORY FLOOR ORIGIN</span></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--white3);line-height:2;letter-spacing:1px;border:0.5px solid rgba(232,160,64,0.15);padding:12px 16px;border-radius:2px;background:var(--amber-glow);width:100%">
+        <div style="color:var(--amber);margin-bottom:4px;">// HUD READOUT</div>
+        <div>LOCATION  ···  BENGALURU, IN</div>
+        <div>STATUS    ···  <span style="color:#4caf50">OPEN TO WORK</span></div>
+        <div>MODE      ···  MYSORE · ON-SITE · HYBRID</div>
+        <div>NETWORK   ···  800+ CONNECTIONS</div>
+        <div>CERT      ···  6σ GREEN BELT</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ PROFESSIONAL JOURNEY STORY ═══ -->
+<section id="story">
+  <div class="max-w">
+    <div class="section-label">// Origin Story</div>
+    <h2 class="section-title">The <em>Journey</em></h2>
+
+    <p class="story-intro">
+      Every great programme manager is forged on a factory floor. Mine started on the shop floor of one of India's premier Tier-1 aerospace suppliers — where I learned that <strong>understanding what you manage is the only real advantage.</strong>
+    </p>
+
+    <div class="journey-path">
+
+      <div class="journey-step" style="justify-content:flex-end;padding-right:calc(50% + 40px);">
+        <div class="journey-step-content">
+          <div class="journey-step-year">2021 — THE FOUNDATION</div>
+          <h3>Born on the Shop Floor</h3>
+          <p>Stepped onto the Rangsons Aerospace factory floor as a Graduate Engineer Trainee. Fuselage structures, aerodefence assemblies, AS9100 tolerances. I didn't just observe — I absorbed. Every rivet, every weld, every inspection taught me what a programme manager must never lose sight of: the physics of the promise.</p>
+        </div>
+        <div class="journey-step-icon">01</div>
+      </div>
+
+      <div class="journey-step" style="justify-content:flex-start;padding-left:calc(50% + 40px);">
+        <div class="journey-step-content">
+          <div class="journey-step-year">2022 — SYSTEMS THINKING</div>
+          <h3>Enterprise Scale at DXC</h3>
+          <p>A deliberate pivot into global enterprise IT operations, supporting Honeywell users across four continents. Here I built the discipline of structured problem-solving, escalation protocols, and documentation rigour — the invisible backbone of every programme I've managed since.</p>
+        </div>
+        <div class="journey-step-icon">02</div>
+      </div>
+
+      <div class="journey-step" style="justify-content:flex-end;padding-right:calc(50% + 40px);">
+        <div class="journey-step-content">
+          <div class="journey-step-year">2023 — FIRST PROGRAMME CHAIR</div>
+          <h3>Building the Function from Zero</h3>
+          <p>Rangsons had no programme management function for structural assembly. I built it. From first principles. Seven OEM customers. A USD 4M portfolio. 130% revenue growth. And every lesson was earned the hard way — late nights with APQP plans, customer escalations at dawn, and supplier negotiations that taught me what leverage really means.</p>
+        </div>
+        <div class="journey-step-icon">03</div>
+      </div>
+
+      <div class="journey-step" style="justify-content:flex-start;padding-left:calc(50% + 40px);">
+        <div class="journey-step-content">
+          <div class="journey-step-year">2025 — THE APEX</div>
+          <h3>Executive Programme Manager, TASL</h3>
+          <p>Tata Advanced Systems. Boeing 787 Dreamliner. The most iconic widebody aircraft in the sky. I own this programme end-to-end — composites production, OEM negotiations, board-level reporting, P&L. The factory floor taught me what matters. Everything since has been preparation for this chair.</p>
+        </div>
+        <div class="journey-step-icon">04</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ PROGRAMME CARDS ═══ -->
+<section id="programmes">
+  <div class="max-w">
+    <div class="section-label">// Programme Dossier</div>
+    <h2 class="section-title">What I've <em>Built</em></h2>
+    <p style="font-family:var(--serif);font-style:italic;font-size:17px;color:var(--white3);margin-bottom:48px;max-width:600px;">Click any programme card to open the full dossier — platforms handled, technical expertise, and programme management decisions that mattered.</p>
+
+    <div class="programmes-grid">
+
+      <!-- BOEING -->
+      <div class="prog-card" data-prog="boeing" tabindex="0" role="button" aria-label="Open Boeing programme details">
+        <div class="prog-accent-bar"></div>
+        <div class="prog-card-header">
+          <div class="prog-card-oemlogo">Boeing</div>
+          <div class="prog-card-subtitle">787 Dreamliner Programme</div>
+          <div class="prog-card-platform">Composite Door Surrounds & Wing Structures · -8, -9 & -10 variants</div>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-card-teaser">Monolithic and sandwich composite structures for the world's most advanced widebody. Managing part rate ramp-up, OEM schedule alignment, and $XM revenue delivery at Tata Advanced Systems.</p>
+          <div class="prog-card-kpis">
+            <span class="prog-kpi">Monolithic Composites</span>
+            <span class="prog-kpi">Sandwich Panels</span>
+            <span class="prog-kpi">Door Surrounds</span>
+            <span class="prog-kpi">Under/Overwing</span>
+          </div>
+          <div class="prog-card-cta">Open Programme Dossier</div>
+        </div>
+      </div>
+
+      <!-- GE AVIATION -->
+      <div class="prog-card" data-prog="ge" tabindex="0" role="button" aria-label="Open GE Aviation programme details">
+        <div class="prog-accent-bar"></div>
+        <div class="prog-card-header">
+          <div class="prog-card-oemlogo">GE Aviation</div>
+          <div class="prog-card-subtitle">Aero-Derivative Engine Packages</div>
+          <div class="prog-card-platform">Multi-package metallic assemblies · $4M+ Revenue Portfolio</div>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-card-teaser">Managed multiple concurrent engine component packages with a combined revenue of $4M+. Built and orchestrated a multi-supplier ecosystem for high-precision welded assemblies.</p>
+          <div class="prog-card-kpis">
+            <span class="prog-kpi">Inconel Welding</span>
+            <span class="prog-kpi">SS Welding</span>
+            <span class="prog-kpi">Multi-Supplier</span>
+            <span class="prog-kpi">$4M+ Revenue</span>
+          </div>
+          <div class="prog-card-cta">Open Programme Dossier</div>
+        </div>
+      </div>
+
+      <!-- IAI -->
+      <div class="prog-card" data-prog="iai" tabindex="0" role="button" aria-label="Open IAI programme details">
+        <div class="prog-accent-bar"></div>
+        <div class="prog-card-header">
+          <div class="prog-card-oemlogo">IAI</div>
+          <div class="prog-card-subtitle">Boeing Passenger-to-Cargo Conversion</div>
+          <div class="prog-card-platform">737 · 747 · 767 · 777 platform conversion tubing systems</div>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-card-teaser">Aluminium, titanium, and stainless steel tubing for P2F conversion of four Boeing platforms. Pioneered kitting strategy to minimise shipping cost — a decision that changed the programme economics.</p>
+          <div class="prog-card-kpis">
+            <span class="prog-kpi">Al/Ti/SS Tubing</span>
+            <span class="prog-kpi">CCC · Anodize</span>
+            <span class="prog-kpi">Passivation</span>
+            <span class="prog-kpi">Kitting Strategy</span>
+          </div>
+          <div class="prog-card-cta">Open Programme Dossier</div>
+        </div>
+      </div>
+
+      <!-- ELBIT -->
+      <div class="prog-card" data-prog="elbit" tabindex="0" role="button" aria-label="Open Elbit Systems programme details">
+        <div class="prog-accent-bar"></div>
+        <div class="prog-card-header">
+          <div class="prog-card-oemlogo">Elbit Systems</div>
+          <div class="prog-card-subtitle">Hermes 900 UAV Engine Assembly</div>
+          <div class="prog-card-platform">Ground-up NPI · Special Process Development · VSM Lead Time −50%</div>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-card-teaser">Built this programme from a blank page. Supplier selection, vendor management, special processes — Class A welding, radiography, heat treatment. The Hermes 900 programme is the one I'm most proud of building from zero.</p>
+          <div class="prog-card-kpis">
+            <span class="prog-kpi">NPI from Scratch</span>
+            <span class="prog-kpi">Class A Welding</span>
+            <span class="prog-kpi">Radiography</span>
+            <span class="prog-kpi">Heat Treatment</span>
+          </div>
+          <div class="prog-card-cta">Open Programme Dossier</div>
+        </div>
+      </div>
+
+      <!-- DASSAULT -->
+      <div class="prog-card" data-prog="dassault" tabindex="0" role="button" aria-label="Open Dassault programme details">
+        <div class="prog-accent-bar"></div>
+        <div class="prog-card-header">
+          <div class="prog-card-oemlogo">Dassault</div>
+          <div class="prog-card-subtitle">Aviation Fuel Tank Systems</div>
+          <div class="prog-card-platform">72 DGQT Process Approval · 13/13 Part Submissions Accepted</div>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-card-teaser">Led Rangsons' qualification through Dassault's stringent 72 DGQT process — achieving supplier approval and delivering a perfect 13-for-13 part submission. Class A welding on aluminium fuel system tubing.</p>
+          <div class="prog-card-kpis">
+            <span class="prog-kpi">72 DGQT Approved</span>
+            <span class="prog-kpi">Class A Welding</span>
+            <span class="prog-kpi">Al Tube Systems</span>
+            <span class="prog-kpi">13/13 Parts</span>
+          </div>
+          <div class="prog-card-cta">Open Programme Dossier</div>
+        </div>
+      </div>
+
+      <!-- COLLINS -->
+      <div class="prog-card" data-prog="collins" tabindex="0" role="button" aria-label="Open Collins Aerospace programme details">
+        <div class="prog-accent-bar"></div>
+        <div class="prog-card-header">
+          <div class="prog-card-oemlogo">Collins</div>
+          <div class="prog-card-subtitle">Galley Systems — Sheet Metal Assemblies</div>
+          <div class="prog-card-platform">Structural precision sheet metal fabrication for cabin interiors</div>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-card-teaser">Deep immersion in industrial sheet metal fabrication — forming, joining, tolerancing, and finishing criticalities specific to cabin galley systems. Built a detailed understanding of what separates good from certified.</p>
+          <div class="prog-card-kpis">
+            <span class="prog-kpi">Sheet Metal Fab</span>
+            <span class="prog-kpi">Galley Systems</span>
+            <span class="prog-kpi">Tolerance Control</span>
+            <span class="prog-kpi">Cabin Interiors</span>
+          </div>
+          <div class="prog-card-cta">Open Programme Dossier</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ EXPERIENCE TIMELINE ═══ -->
+<section id="experience">
+  <div class="max-w">
+    <div class="section-label">// Flight Log</div>
+    <h2 class="section-title">Programme <em>Experience</em></h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot active"></div>
+        <div class="tl-meta">
+          <div class="tl-date">OCT 2025 — PRESENT</div>
+          <div class="tl-company">Tata Advanced Systems</div>
+          <div class="tl-location">Bengaluru, India</div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-role">Executive Programme Manager</div>
+          <div class="tl-intro">Leading the Boeing 787 composites programme end-to-end — the apex of a journey that started on the factory floor.</div>
+          <ul class="tl-bullets">
+            <li>Own the <strong>Boeing 787 composites programme</strong> — monolithic and sandwich composite parts for Door Surrounds and Under/Overwing structures across -8, -9 & -10 variants</li>
+            <li>Drive production part rate ramp-up to meet OEM delivery schedules and revenue targets</li>
+            <li>Lead contract and price negotiations with global OEMs, securing commercially favourable terms while reinforcing <strong>long-term strategic partnerships</strong></li>
+            <li>Deliver business case analyses and financial models to support <strong>executive gate reviews</strong> and programme investment decisions</li>
+            <li>Conduct comprehensive contract reviews ensuring <strong>AS9100 compliance</strong>, identifying programme risks and value creation opportunities</li>
+            <li>Monitor programme P&L against business case baselines; present KPIs at <strong>PMRs and board-level reviews</strong></li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tag">Boeing 787</span><span class="tag">Composites</span><span class="tag">P&L Management</span><span class="tag">OEM Negotiations</span><span class="tag">AS9100</span><span class="tag">Board Reporting</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-meta">
+          <div class="tl-date">JUL 2023 — OCT 2025</div>
+          <div class="tl-company">Rangsons Aerospace</div>
+          <div class="tl-location">Mysore, India</div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-role">Associate Programme Manager</div>
+          <div class="tl-intro">First Programme Manager for structural assembly at Rangsons — building the function from zero and scaling it to global OEM delivery excellence.</div>
+          <ul class="tl-bullets">
+            <li>Led aviation tube and structural assembly programmes for <strong>GE Aviation, IAI, Elbit Systems, Moog Controls, Collins Aerospace, Siemens, and Dassault Aviation</strong></li>
+            <li>Managed a <strong>USD 4M+ programme portfolio</strong>, delivering 130% sales growth and USD 2M incremental revenue through strategic RFQs and NPI execution</li>
+            <li>Directed supplier strategy and SCM — cutting supply chain costs by <strong>14%</strong>, raw material costs by <strong>12%</strong>, with 95%+ on-time delivery sustained</li>
+            <li>Spearheaded <strong>NPD/NPI</strong> from concept validation through APQP and production ramp-up</li>
+            <li>Achieved <strong>100% on-time delivery</strong> and eliminated 71% of project bottlenecks via cross-functional collaboration and proactive risk management</li>
+            <li>Coordinated international delivery teams across <strong>France, Israel, Germany, and the US</strong></li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tag">GE Aviation</span><span class="tag">Dassault</span><span class="tag">Collins</span><span class="tag">NPI/NPD</span><span class="tag">APQP</span><span class="tag">Supply Chain</span><span class="tag">VSM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-meta">
+          <div class="tl-date">JUL 2021 — JUL 2023</div>
+          <div class="tl-company">Rangsons Aerospace</div>
+          <div class="tl-location">Mysore, India</div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-role">Graduate Engineer Trainee</div>
+          <div class="tl-intro">Every great programme starts somewhere on a factory floor. This was mine.</div>
+          <ul class="tl-bullets">
+            <li>Hands-on exposure to <strong>aviation fuselage structures and aerodefence assemblies</strong> at one of India's premier Tier-1 aerospace suppliers</li>
+            <li>Developed foundational understanding of <strong>AS9100 quality standards</strong>, shop-floor manufacturing processes, and aerospace-grade tolerances</li>
+            <li>Observed the end-to-end programme lifecycle — building the <strong>systems lens</strong> that defines strategic decisions today</li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tag">Aerospace Structures</span><span class="tag">AS9100</span><span class="tag">Programme Lifecycle</span><span class="tag">OEM Manufacturing</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-meta">
+          <div class="tl-date">OCT 2022 — APR 2023</div>
+          <div class="tl-company">DXC Technologies</div>
+          <div class="tl-location">Bengaluru, India</div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-role">Service Desk Engineer</div>
+          <div class="tl-intro">Enterprise-scale IT operations — building discipline in structured problem-solving and global stakeholder management.</div>
+          <ul class="tl-bullets">
+            <li>Delivered global IT support to <strong>Honeywell enterprise users</strong> across Netherlands, Canada, US, and UK</li>
+            <li>Reduced ticket resolution time by <strong>20%</strong> through streamlined troubleshooting workflows and process improvements</li>
+            <li>Developed discipline in <strong>documentation, escalation protocols, and structured problem-solving</strong></li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tag">Enterprise IT</span><span class="tag">Honeywell</span><span class="tag">Process Optimisation</span><span class="tag">Global Ops</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ METRICS ═══ -->
+<section id="metrics">
+  <div class="max-w">
+    <div class="section-label">// Programme Metrics</div>
+    <h2 class="section-title">Delivered <em>Results</em></h2>
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-num">$10<span class="metric-unit">M+</span></div><div class="metric-label">Career Portfolio Value</div><div class="metric-sub">$6M+ Boeing (TASL)<br>$4M+ Rangsons</div></div>
+      <div class="metric-card"><div class="metric-num">130<span class="metric-unit">%</span></div><div class="metric-label">Revenue Growth</div><div class="metric-sub">USD 156K → USD 365K<br>within 6 months</div></div>
+      <div class="metric-card"><div class="metric-num">100<span class="metric-unit">%</span></div><div class="metric-label">On-Time Delivery</div><div class="metric-sub">Sustained across all<br>key OEM programmes</div></div>
+      <div class="metric-card"><div class="metric-num">71<span class="metric-unit">%</span></div><div class="metric-label">Bottlenecks Eliminated</div><div class="metric-sub">Via cross-functional<br>process re-engineering</div></div>
+      <div class="metric-card"><div class="metric-num">14<span class="metric-unit">%</span></div><div class="metric-label">Supply Chain Cost Cut</div><div class="metric-sub">Through supplier strategy<br>& negotiation</div></div>
+      <div class="metric-card"><div class="metric-num">50<span class="metric-unit">%</span></div><div class="metric-label">Lead Time Reduction</div><div class="metric-sub">Elbit Systems programme<br>via VSM implementation</div></div>
+      <div class="metric-card"><div class="metric-num">13<span class="metric-unit">/13</span></div><div class="metric-label">Dassault Part Submissions</div><div class="metric-sub">Perfect DGQT approval<br>rate — 100%</div></div>
+      <div class="metric-card"><div class="metric-num">7</div><div class="metric-label">Global OEM Customers</div><div class="metric-sub">US · France · Israel<br>Germany · India</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills">
+  <div class="max-w">
+    <div class="section-label">// Capabilities</div>
+    <h2 class="section-title">Core <em>Competencies</em></h2>
+    <div class="skills-grid">
+      <div class="skill-cluster"><div class="skill-cluster-icon">▶</div><div class="skill-cluster-title">Programme Management</div><div class="skill-list"><span class="skill-pill">Programme Lifecycle</span><span class="skill-pill">NPI / NPD</span><span class="skill-pill">APQP</span><span class="skill-pill">EVM</span><span class="skill-pill">PMR</span><span class="skill-pill">KPI Tracking</span><span class="skill-pill">Change Management</span><span class="skill-pill">Risk Mitigation</span></div></div>
+      <div class="skill-cluster"><div class="skill-cluster-icon">◈</div><div class="skill-cluster-title">Aerospace & Quality</div><div class="skill-list"><span class="skill-pill">AS9100 Compliance</span><span class="skill-pill">OEM Relations</span><span class="skill-pill">Composites</span><span class="skill-pill">Structural Assembly</span><span class="skill-pill">Aerodefence Systems</span><span class="skill-pill">Six Sigma Green Belt</span><span class="skill-pill">Lean Manufacturing</span></div></div>
+      <div class="skill-cluster"><div class="skill-cluster-icon">⬡</div><div class="skill-cluster-title">Supply Chain & Strategy</div><div class="skill-list"><span class="skill-pill">Supply Chain Mgmt</span><span class="skill-pill">Vendor Negotiation</span><span class="skill-pill">Value Stream Mapping</span><span class="skill-pill">Cost Optimisation</span><span class="skill-pill">Strategic RFQs</span><span class="skill-pill">P&L Monitoring</span><span class="skill-pill">Contract Review</span></div></div>
+      <div class="skill-cluster"><div class="skill-cluster-icon">◇</div><div class="skill-cluster-title">Leadership & Stakeholders</div><div class="skill-list"><span class="skill-pill">Cross-functional Teams</span><span class="skill-pill">Board Reporting</span><span class="skill-pill">International Coordination</span><span class="skill-pill">Executive Presentations</span><span class="skill-pill">Customer Relations</span><span class="skill-pill">Stakeholder Management</span></div></div>
+      <div class="skill-cluster"><div class="skill-cluster-icon">⊕</div><div class="skill-cluster-title">Special Process Expertise</div><div class="skill-list"><span class="skill-pill">Class A Welding</span><span class="skill-pill">Radiography</span><span class="skill-pill">Heat Treatment</span><span class="skill-pill">Inconel Welding</span><span class="skill-pill">CCC / Anodization</span><span class="skill-pill">Passivation / Epoxy</span><span class="skill-pill">Sheet Metal Fab</span></div></div>
+      <div class="skill-cluster"><div class="skill-cluster-icon">✦</div><div class="skill-cluster-title">Tools & Technology</div><div class="skill-list"><span class="skill-pill">SAP ECC</span><span class="skill-pill">SAP S/4 HANA</span><span class="skill-pill">MS Project</span><span class="skill-pill">Power BI</span><span class="skill-pill">Advanced Excel</span><span class="skill-pill">Digital Twin</span><span class="skill-pill">Perplexity AI</span></div></div>
+    </div>
+
+    <div style="margin-top:60px">
+      <div class="section-label" style="margin-bottom:24px">// Certifications & Training</div>
+      <div class="certs-grid">
+        <div class="cert-card"><div class="cert-badge">6σ</div><div><div class="cert-name">Six Sigma Green Belt</div><div class="cert-issuer">LinkedIn · Dec 2025</div></div></div>
+        <div class="cert-card"><div class="cert-badge">BD</div><div><div class="cert-name">Business Development: Strategic Planning</div><div class="cert-issuer">LinkedIn · Nov 2025</div></div></div>
+        <div class="cert-card"><div class="cert-badge">PM</div><div><div class="cert-name">Project Management Foundations</div><div class="cert-issuer">Microsoft & LinkedIn Learning</div></div></div>
+        <div class="cert-card"><div class="cert-badge">RM</div><div><div class="cert-name">Risk Management</div><div class="cert-issuer">Project Management Institute (PMI)</div></div></div>
+        <div class="cert-card"><div class="cert-badge">SC</div><div><div class="cert-name">Supply Chain Foundations</div><div class="cert-issuer">Project Management Institute (PMI)</div></div></div>
+        <div class="cert-card"><div class="cert-badge">C2</div><div><div class="cert-name">EF Standard English Test — C2 Proficient</div><div class="cert-issuer">EF SET · Score 77/100</div></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:60px">
+      <div class="section-label" style="margin-bottom:24px">// Education</div>
+      <div class="edu-card">
+        <div class="edu-year">2018<br>—<br>2022</div>
+        <div>
+          <div class="edu-degree">B.E. in Mechanical Engineering</div>
+          <div class="edu-school">Maharaja Institute of Technology Thandavapura · Mysore</div>
+          <div class="edu-detail">CGPA 7.6 · Karnataka, India</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="max-w">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label">// Cleared for Boarding</div>
+        <h2 class="contact-headline">Ready to <em>elevate</em><br>your next programme?</h2>
+        <p class="contact-body">Executive Programme Manager with a track record of delivering complex aerospace and defence programmes on time, on budget, and above target. Open to senior leadership roles in aerospace, defence, and strategic operations.</p>
+        <div style="margin-bottom:32px">
+          <div class="section-label" style="margin-bottom:16px">// OEM Network</div>
+          <div class="oem-wall">
+            <div class="oem-badge">Boeing</div><div class="oem-badge">GE Aviation</div><div class="oem-badge">Dassault</div><div class="oem-badge">Collins Aerospace</div><div class="oem-badge">IAI</div><div class="oem-badge">Elbit Systems</div><div class="oem-badge">Moog Controls</div><div class="oem-badge">Siemens</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:nikhil.lokesh@zohomail.in" class="contact-link">
+          <div class="contact-link-icon">@</div>
+          <div><div class="contact-link-label">Email</div><div class="contact-link-value">nikhil.lokesh@zohomail.in</div></div>
+        </a>
+        <a href="tel:+918904934408" class="contact-link">
+          <div class="contact-link-icon">☏</div>
+          <div><div class="contact-link-label">Phone</div><div class="contact-link-value">+91 89049 34408</div></div>
+        </a>
+        <a href="https://linkedin.com/in/nikhil-l-a771a8a6" target="_blank" class="contact-link">
+          <div class="contact-link-icon">in</div>
+          <div><div class="contact-link-label">LinkedIn</div><div class="contact-link-value">linkedin.com/in/nikhil-l-a771a8a6</div></div>
+        </a>
+        <div class="contact-link" style="border-color:rgba(76,175,80,0.3);background:rgba(76,175,80,0.05)">
+          <div class="contact-link-icon" style="color:#4caf50">✓</div>
+          <div><div class="contact-link-label">Availability</div><div class="contact-link-value" style="color:#4caf50">Open to Work · Mysore · On-site · Hybrid</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-copy">© 2026 Nikhil Lokesh · Executive Programme Manager · Aerospace & Defence</div>
+  <div class="footer-sign">Building Programmes That Fly</div>
+</footer>
+
+<script>
+// ── PROGRAMME DATA
+const programmes = {
+  boeing: {
+    oemlogo: 'Boeing',
+    platform: 'Boeing 787 Dreamliner · -8, -9 & -10 Variants',
+    body: `
+      <div class="modal-section">
+        <div class="modal-section-label">Programme Narrative</div>
+        <div class="modal-narrative">"The 787 Dreamliner is the benchmark of what composite aerospace manufacturing can achieve. Owning this programme is the culmination of everything I've learned — from the factory floor up."</div>
+        <p style="font-size:13px;color:var(--white2);line-height:1.8;">At Tata Advanced Systems, I hold end-to-end programme ownership of Boeing 787 Dreamliner composite parts — the most technologically advanced widebody aircraft in production. This isn't just a contract to manage; it's the apex of precision manufacturing at India's most respected defence & aerospace Tier-1.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Parts & Platforms</div>
+        <div class="modal-expertise-grid">
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Monolithic Composite Parts</div>
+            <div class="modal-expertise-item-desc">Solid laminate composite structures requiring precise fibre orientation control, autoclave cure management, and dimensional verification to Boeing tolerances.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Sandwich Composite Parts</div>
+            <div class="modal-expertise-item-desc">Honeycomb-cored sandwich panels requiring core-skin bonding integrity, flatwise tensile testing, and weight-sensitive design adherence for airframe structures.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Door Surrounds</div>
+            <div class="modal-expertise-item-desc">Fuselage door-frame composite structures — structurally critical, load-bearing, requiring Class A surface finish and tight geometric tolerance stack-up management.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Under Wing & Over Wing Structures</div>
+            <div class="modal-expertise-item-desc">Wing-to-fuselage interface composite fairings and structures, delivered across -8, -9, and -10 variants with part-rate ramp aligned to Boeing's global delivery schedule.</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Programme Management Responsibilities</div>
+        <ul class="modal-bullets">
+          <li>Own the full programme P&amp;L — monitoring revenue, cost performance, and margin against the approved business case baseline at every reporting cycle.</li>
+          <li>Drive part-rate ramp-up strategy, coordinating with production, tooling, and quality to accelerate delivery cadence without compromising build standard.</li>
+          <li>Lead OEM negotiations with Boeing on pricing, schedule, and contractual terms — securing commercially favourable positions while protecting the long-term relationship.</li>
+          <li>Conduct comprehensive contract reviews ensuring AS9100 Rev D compliance and identifying value creation opportunities within programme scope.</li>
+          <li>Present programme KPIs, risks, and mitigation actions at PMRs and board-level executive reviews.</li>
+          <li>Coordinate cross-functional teams — Engineering, SCM, Quality, Finance — to align programme execution with Boeing's delivery schedule expectations.</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Key Performance Indicators</div>
+        <div class="modal-kpi-row">
+          <div class="modal-kpi-card"><div class="modal-kpi-num">100%</div><div class="modal-kpi-label">OTD Target</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">3</div><div class="modal-kpi-label">787 Variants</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">AS9100</div><div class="modal-kpi-label">Quality Standard</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">TASL</div><div class="modal-kpi-label">Tier-1 Supplier</div></div>
+        </div>
+      </div>
+    `
+  },
+  ge: {
+    oemlogo: 'GE Aviation',
+    platform: 'Aero-Derivative Engine Packages · $4M+ Revenue Portfolio',
+    body: `
+      <div class="modal-section">
+        <div class="modal-section-label">Programme Narrative</div>
+        <div class="modal-narrative">"Managing GE's engine packages taught me something no classroom can: how to hold a programme together when every sub-assembly lives in a different supplier's hands."</div>
+        <p style="font-size:13px;color:var(--white2);line-height:1.8;">The GE Aviation programme at Rangsons was multi-dimensional — multiple concurrent packages, multiple dependent suppliers, and a combined revenue responsibility of $4 million. This was the crucible in which my multi-supplier programme management methodology was forged.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Technical Expertise Developed</div>
+        <div class="modal-expertise-grid">
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Inconel Welding</div>
+            <div class="modal-expertise-item-desc">Managed production of Inconel-alloy welded components for high-temperature engine environments — understanding weld parameter control, PWHT requirements, and non-destructive testing protocols.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Stainless Steel Welding</div>
+            <div class="modal-expertise-item-desc">Oversaw SS welded assemblies for engine peripheral systems, ensuring weld quality compliance with GE's internal standards and managing distortion control challenges.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Multi-Supplier Orchestration</div>
+            <div class="modal-expertise-item-desc">Designed and managed a supplier ecosystem where multiple vendors contributed to a single deliverable — sequencing, dependency management, and risk buffering across the supply chain.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Package Revenue Management</div>
+            <div class="modal-expertise-item-desc">Tracked revenue, cost, and margin across multiple concurrent packages simultaneously — building the financial fluency that now underpins my P&L ownership at TASL.</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Programme Management Approach</div>
+        <ul class="modal-bullets">
+          <li><strong>Concurrent programme management</strong> — maintained separate WBS, schedules, and risk registers for each package while managing interdependencies at the portfolio level.</li>
+          <li><strong>Supplier-dependent schedule management</strong> — built buffer strategies and escalation triggers to protect customer delivery commitments when upstream suppliers slipped.</li>
+          <li>Regular programme review cadences with GE aviation programme teams, presenting delivery forecasts, quality performance, and risk mitigation plans.</li>
+          <li>Developed deep expertise in <strong>engine component qualification requirements</strong> — understanding what GE expects at every stage from raw material certification to final inspection.</li>
+          <li>Cost management across multiple supplier contracts simultaneously — identifying opportunities to consolidate spend and renegotiate terms without disrupting supply continuity.</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Portfolio Performance</div>
+        <div class="modal-kpi-row">
+          <div class="modal-kpi-card"><div class="modal-kpi-num">$4M+</div><div class="modal-kpi-label">Total Revenue</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">Multi</div><div class="modal-kpi-label">Concurrent Packages</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">Inconel</div><div class="modal-kpi-label">& SS Alloys</div></div>
+        </div>
+      </div>
+    `
+  },
+  iai: {
+    oemlogo: 'IAI',
+    platform: 'Boeing P2F Conversion Programme · 737, 747, 767 & 777',
+    body: `
+      <div class="modal-section">
+        <div class="modal-section-label">Programme Narrative</div>
+        <div class="modal-narrative">"IAI taught me that programme management isn't just about making parts — it's about understanding the ecosystem they live in. The kitting decision alone saved the programme's commercial case."</div>
+        <p style="font-size:13px;color:var(--white2);line-height:1.8;">Israel Aerospace Industries' passenger-to-freighter conversion programme is one of aviation's most complex supply chain challenges: parts from multiple platforms, multiple materials, and multiple chemical processes — all landing in Tel Aviv ready for aircraft conversion. My contribution wasn't just manufacturing programme management; it was supply chain strategy that changed how the programme was costed.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Platforms & Materials</div>
+        <div class="modal-expertise-grid">
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Four Boeing Platforms</div>
+            <div class="modal-expertise-item-desc">737, 747, 767 & 777 conversion programmes — each with distinct structural geometries, tubing routings, and material specifications. Managed simultaneously with separate part lists and delivery schedules.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Aluminium Tubing</div>
+            <div class="modal-expertise-item-desc">Hydraulic, pneumatic, and fluid system tubing — bend radii control, end-form consistency, and surface treatment compliance for aircraft system installation.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Titanium Tubing</div>
+            <div class="modal-expertise-item-desc">High-strength, low-weight titanium tube assemblies for structural and system applications — managed forming process controls and contamination prevention protocols critical to titanium handling.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Stainless Steel Tubing</div>
+            <div class="modal-expertise-item-desc">SS tubing for higher-temperature and higher-pressure system applications — passivation and surface finish requirements managed to IAI's specifications.</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Chemical Process Knowledge</div>
+        <ul class="modal-bullets">
+          <li><strong>Chromate Conversion Coating (CCC)</strong> — understood the application process, MIL-DTL-5541 compliance, and how coating weight affects corrosion performance on aluminium substrates.</li>
+          <li><strong>Epoxy Priming & Coating</strong> — managed surface preparation, primer application parameters, and adhesion testing for painted tube assemblies destined for airframe installation.</li>
+          <li><strong>Anodization</strong> — supervised Type II and Type III anodize processes; understood thickness requirements, dye sealing, and how the process affects dimensional tolerances on precision tubings.</li>
+          <li><strong>Passivation</strong> — managed passivation of stainless steel tubing to AMS 2700 / ASTM A967, ensuring proper acid treatment, rinsing, and surface cleanliness verification.</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">The Kitting Strategy — A Programme-Level Decision</div>
+        <ul class="modal-bullets">
+          <li>Identified that <strong>individual part shipments</strong> to IAI Israel were creating disproportionate freight costs relative to part value — threatening the programme's commercial viability.</li>
+          <li>Designed a <strong>kitting and consolidation strategy</strong> that grouped parts by installation zone and shipment window, dramatically reducing per-unit freight cost and customs complexity.</li>
+          <li>The kitting approach also improved <strong>receiving and inventory management</strong> on IAI's side — reducing handling errors and installation sequence confusion on the conversion line.</li>
+          <li>This decision required coordination across planning, quality, and logistics — and represented the kind of <strong>programme-level thinking</strong> that separates a programme manager from a coordinator.</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Scope at a Glance</div>
+        <div class="modal-kpi-row">
+          <div class="modal-kpi-card"><div class="modal-kpi-num">4</div><div class="modal-kpi-label">Boeing Platforms</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">Al/Ti/SS</div><div class="modal-kpi-label">Material Mix</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">P2F</div><div class="modal-kpi-label">Conversion Type</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">Kitting</div><div class="modal-kpi-label">Cost Innovation</div></div>
+        </div>
+      </div>
+    `
+  },
+  elbit: {
+    oemlogo: 'Elbit Systems',
+    platform: 'Hermes 900 UAV · Engine Assembly Programme',
+    body: `
+      <div class="modal-section">
+        <div class="modal-section-label">Programme Narrative</div>
+        <div class="modal-narrative">"The Hermes 900 is the programme I built with my own hands. There was no playbook. No predecessor. Just a requirement, a blank BOM, and the task of making it real."</div>
+        <p style="font-size:13px;color:var(--white2);line-height:1.8;">When Elbit Systems selected Rangsons for the Hermes 900 UAV engine assembly programme, there was no established process, no approved supplier list, no precedent. As the programme manager from day one, I built every element of this programme from scratch — from supplier selection through to first article acceptance. This is the programme that crystallised my identity as a development-stage programme manager.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Programme Development — From Zero</div>
+        <ul class="modal-bullets">
+          <li><strong>Supplier selection from first principles</strong> — evaluated and qualified suppliers against Elbit's defence-grade requirements; assessed technical capability, process certification, capacity, and financial stability before making any sourcing commitments.</li>
+          <li><strong>Vendor management ecosystem</strong> — established governance structures, communication protocols, and performance KPIs for each sub-tier supplier contributing to the engine assembly.</li>
+          <li><strong>APQP execution</strong> — drove the entire Advanced Product Quality Planning process from concept review through production part approval, ensuring every gate was met before escalation to the next phase.</li>
+          <li><strong>First article build</strong> — coordinated the first physical build of the assembly, managing inspection points, deviation dispositions, and corrective actions to achieve Elbit's first article acceptance.</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Special Process Expertise Gained</div>
+        <div class="modal-expertise-grid">
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Class A Welding</div>
+            <div class="modal-expertise-item-desc">Managed Class A structural welding for defence applications — welder qualification to AWS D1.1 / AMS standards, WPS/PQR documentation, and weld inspection including visual and dimensional checks.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Radiographic Testing (RT)</div>
+            <div class="modal-expertise-item-desc">Oversaw radiographic inspection of welded assemblies — understood film interpretation criteria, defect disposition authority, and how to manage RT findings within programme schedule without compromising safety margins.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Heat Treatment</div>
+            <div class="modal-expertise-item-desc">Managed solution annealing, ageing, and stress-relief heat treatment operations — understood how thermal cycles affect material properties and how to sequence heat treatment within the overall build plan.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Special Process Painting</div>
+            <div class="modal-expertise-item-desc">Supervised defence-specification painting operations — surface cleanliness requirements, primer/topcoat application parameters, adhesion testing (cross-cut and pull-off), and DFT verification.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Sheet Metal Expertise</div>
+            <div class="modal-expertise-item-desc">Deep hands-on understanding of sheet metal forming, bending, flanging, and joining for UAV structural components — tolerancing, springback management, and fit-up control for welded assemblies.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">VSM Implementation</div>
+            <div class="modal-expertise-item-desc">Mapped the complete value stream and eliminated non-value-adding steps — achieving a 50% lead time reduction that became a benchmark programme efficiency case study within Rangsons.</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Programme Outcomes</div>
+        <div class="modal-kpi-row">
+          <div class="modal-kpi-card"><div class="modal-kpi-num">50%</div><div class="modal-kpi-label">Lead Time Reduction</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">Zero</div><div class="modal-kpi-label">Prior Precedent</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">RT + HT</div><div class="modal-kpi-label">Special Processes</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">NPI</div><div class="modal-kpi-label">Full Ownership</div></div>
+        </div>
+      </div>
+    `
+  },
+  dassault: {
+    oemlogo: 'Dassault',
+    platform: 'Aviation Fuel Tank Systems · 72 DGQT Supplier Approval',
+    body: `
+      <div class="modal-section">
+        <div class="modal-section-label">Programme Narrative</div>
+        <div class="modal-narrative">"Dassault doesn't give approvals easily. Getting through 72 DGQT with a 13-for-13 part submission record is not a footnote — it's the whole story of what disciplined programme management can deliver."</div>
+        <p style="font-size:13px;color:var(--white2);line-height:1.8;">Dassault Aviation maintains some of the most exacting supplier qualification standards in commercial aviation. The 72 DGQT process — Dassault's supplier qualification gateway — requires meticulous documentation, process control, and part quality across every submitted deliverable. I led Rangsons through this qualification, achieving approval and delivering a perfect submission record.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">The 72 DGQT Achievement</div>
+        <ul class="modal-bullets">
+          <li><strong>72 DGQT Process</strong> — Dassault's qualification framework for new suppliers, requiring demonstration of manufacturing capability, quality system maturity, and first-article part quality across a defined submission set.</li>
+          <li>Led the complete qualification journey — from initial capability assessment through documentation submission, manufacturing trial runs, dimensional reporting, and final Dassault review.</li>
+          <li><strong>13 parts submitted. 13 parts accepted.</strong> A 100% first-submission acceptance rate — achieved through rigorous pre-submission inspection, dimensional verification, and process compliance checks at every stage.</li>
+          <li>Coordinated with Dassault's supplier quality team in France — managing cultural and timezone communication challenges while maintaining the programme timeline to Dassault's satisfaction.</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Technical Scope — Fuel Tank Tubing Systems</div>
+        <div class="modal-expertise-grid">
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Aluminium Fuel System Tubing</div>
+            <div class="modal-expertise-item-desc">Precision aluminium tubes for aircraft fuel system routing — requiring tight bend geometry control, end-form dimensional compliance, and surface treatment to Dassault's material specifications.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Class A Welding Requirement</div>
+            <div class="modal-expertise-item-desc">Fuel system tubing joins required Class A weld quality — managed welder qualification, weld procedure adherence, and post-weld inspection including liquid penetrant testing for leak-critical joints.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Fuel System Criticality</div>
+            <div class="modal-expertise-item-desc">Understanding the consequence of failure in fuel systems drove exceptionally high inspection rigour. Every dimension, every weld, every surface finish was treated as safety-critical — because it is.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Documentation & Traceability</div>
+            <div class="modal-expertise-item-desc">Full material traceability from raw bar stock through to finished assembly — heat number tracking, process record retention, and dimensional report packaging to Dassault's DFM documentation requirements.</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">What This Achievement Means</div>
+        <ul class="modal-bullets">
+          <li>A 13/13 DGQT submission is not typical — most suppliers require resubmissions. Achieving it first-pass reflects the depth of <strong>upfront quality planning</strong> and programme discipline applied before a single part was submitted.</li>
+          <li>This qualification opened Rangsons' door to the Dassault supply chain — a <strong>strategic business development outcome</strong> that extended beyond the immediate programme into long-term partnership value.</li>
+          <li>The programme built my expertise in <strong>international OEM supplier qualification processes</strong> — a transferable skill I now apply in how I approach new programme onboarding and contract compliance at TASL.</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Qualification Scorecard</div>
+        <div class="modal-kpi-row">
+          <div class="modal-kpi-card"><div class="modal-kpi-num">13/13</div><div class="modal-kpi-label">Parts Accepted</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">100%</div><div class="modal-kpi-label">First-Pass Rate</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">72 DGQT</div><div class="modal-kpi-label">Approved</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">France</div><div class="modal-kpi-label">OEM Location</div></div>
+        </div>
+      </div>
+    `
+  },
+  collins: {
+    oemlogo: 'Collins',
+    platform: 'Galley Systems · Sheet Metal Structural Assemblies',
+    body: `
+      <div class="modal-section">
+        <div class="modal-section-label">Programme Narrative</div>
+        <div class="modal-narrative">"Collins taught me that sheet metal fabrication for aerospace is a world unto itself — where the difference between 'it looks right' and 'it is right' can be found only with a gauge, a calliper, and a deep understanding of the process."</div>
+        <p style="font-size:13px;color:var(--white2);line-height:1.8;">The Collins Aerospace galley systems programme was a master class in precision sheet metal fabrication for cabin interior applications. Galley structures must meet structural, finish, and installation accuracy requirements simultaneously — and managing this programme gave me a granular understanding of what industrial sheet metal fabrication demands at the aerospace standard.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Sheet Metal Fabrication Expertise</div>
+        <div class="modal-expertise-grid">
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Forming & Bending Operations</div>
+            <div class="modal-expertise-item-desc">Managed press brake and roll forming operations for galley panel fabrication — understanding springback compensation, bend allowance calculations, and tooling selection for tight-radius bends in aluminium and stainless alloys.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Joining & Fastening</div>
+            <div class="modal-expertise-item-desc">Oversaw spot welding, riveting, and mechanical fastening operations for galley structural frames — understanding joint strength requirements, fastener torque specifications, and how joining method affects structural stiffness.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Dimensional Tolerance Management</div>
+            <div class="modal-expertise-item-desc">Galley assemblies must fit precisely within aircraft cabin monuments — managed tolerance stack-up analysis, first-article dimensional reporting, and non-conformance disposition for out-of-tolerance conditions.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Surface Finish & Appearance</div>
+            <div class="modal-expertise-item-desc">Cabin-facing surfaces require Class A visual standards — managed deburring, polishing, anodizing, and painting operations to ensure finished galley parts met cabin aesthetics requirements alongside structural ones.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Criticalities in Aerospace Sheet Metal</div>
+            <div class="modal-expertise-item-desc">Understood the hidden failure modes: grain direction effects on formability, tool marks that become fatigue initiation sites, and how corrosion protection adequacy is assessed — the knowledge that separates a PM who manages sheet metal from one who understands it.</div>
+          </div>
+          <div class="modal-expertise-item">
+            <div class="modal-expertise-item-title">Programme Interface with Collins</div>
+            <div class="modal-expertise-item-desc">Managed programme reviews with Collins' supplier quality engineers, interpreting engineering changes, submitting deviation requests, and ensuring drawing interpretation alignment between Rangsons' manufacturing team and Collins' design intent.</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Programme Management Focus Areas</div>
+        <ul class="modal-bullets">
+          <li><strong>Engineering change management</strong> — galley systems undergo frequent design iterations as airlines customise cabin configurations; managed ECO processing and line-of-balance impacts without disrupting delivery schedule.</li>
+          <li><strong>Supplier qualification for special processes</strong> — managed sub-tier qualification for anodizing and painting, ensuring process approval by Collins before committing parts to the surface treatment chain.</li>
+          <li>Built internal <strong>process knowledge documentation</strong> — ensuring Rangsons' shop floor team understood not just what Collins wanted, but why — reducing first-article failures and improving conformance from the start.</li>
+          <li>Cost analysis and RFQ response for new galley variants — developing accurate cost models for sheet metal assembly that reflected real-world forming complexity, not just material weight.</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Programme Snapshot</div>
+        <div class="modal-kpi-row">
+          <div class="modal-kpi-card"><div class="modal-kpi-num">Galley</div><div class="modal-kpi-label">System Type</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">Al + SS</div><div class="modal-kpi-label">Materials</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">Class A</div><div class="modal-kpi-label">Surface Standard</div></div>
+          <div class="modal-kpi-card"><div class="modal-kpi-num">Cabin</div><div class="modal-kpi-label">Interior Focus</div></div>
+        </div>
+      </div>
+    `
+  }
+};
+
+// ── MODAL LOGIC
+const overlay = document.getElementById('modal-overlay');
+const modalClose = document.getElementById('modal-close');
+const modalOemlogo = document.getElementById('modal-oemlogo');
+const modalPlatform = document.getElementById('modal-platform');
+const modalBody = document.getElementById('modal-body');
+
+function openModal(progKey) {
+  const prog = programmes[progKey];
+  if (!prog) return;
+  modalOemlogo.textContent = prog.oemlogo;
+  modalPlatform.textContent = prog.platform;
+  modalBody.innerHTML = prog.body;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('modal-box').scrollTop = 0;
+}
+
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.prog-card').forEach(card => {
+  card.addEventListener('click', () => openModal(card.dataset.prog));
+  card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openModal(card.dataset.prog); });
+});
+
+modalClose.addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── CURSOR
+const cursor = document.getElementById('cursor');
+const dot = document.getElementById('cursor-dot');
+let mx=0, my=0, cx=0, cy=0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+});
+const interactives = document.querySelectorAll('a, button, .btn, .metric-card, .oem-badge, .prog-card, .modal-close');
+interactives.forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+});
+function animCursor() {
+  cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+  cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+
+// ── STARFIELD
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+function initStars() {
+  stars = [];
+  for (let i = 0; i < 200; i++) {
+    stars.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 1.2 + 0.2, o: Math.random() * 0.6 + 0.1, speed: Math.random() * 0.3 + 0.05 });
+  }
+}
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(245,240,232,${s.o})`; ctx.fill();
+    s.o += Math.sin(Date.now() * 0.001 * s.speed) * 0.003;
+    if (s.o < 0.05) s.o = 0.05; if (s.o > 0.8) s.o = 0.8;
+  });
+  requestAnimationFrame(drawStars);
+}
+resizeCanvas(); initStars(); drawStars();
+window.addEventListener('resize', () => { resizeCanvas(); initStars(); });
+
+// ── SCROLL PROGRESS
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const p = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  bar.style.width = p + '%';
+});
+
+// ── SCROLL REVEAL
+const reveals = document.querySelectorAll('.tl-item, .skill-cluster, .cert-card, .journey-step, .prog-card');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => obs.observe(el));
+
+// ── METRIC COUNTER
+const metricNums = document.querySelectorAll('.metric-num');
+const metObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const unit = el.querySelector('.metric-unit');
+      const unitHTML = unit ? unit.outerHTML : '';
+      const rawText = el.textContent.replace(/[^0-9.]/g, '');
+      const num = parseFloat(rawText);
+      if (isNaN(num)) return;
+      let start = 0; const dur = 1200;
+      const startTime = Date.now();
+      function tick() {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / dur, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const cur = Math.round(num * ease * 10) / 10;
+        el.innerHTML = (cur % 1 === 0 ? cur : cur.toFixed(1)) + unitHTML;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      tick();
+      metObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+metricNums.forEach(el => metObs.observe(el));
+</script>
+</body>
+</html>
